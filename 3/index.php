@@ -11,7 +11,7 @@ else{
     $regex_name="/[a-z,A-Z,а-я,А-Я,-]*$/";
     $regex_email="/[a-z]+\w*@[a-z]+\.[a-z]{2,4}$/";
     $errors = FALSE;
-    if (empty($_POST['name']) or !preg_matchAll($regex_name,$_POST['name'])) {
+    if (empty($_POST['name']) or !preg_match($regex_name,$_POST['name'])) {
     print('Заполните имя.<br/>');
     $errors = TRUE;
     }
