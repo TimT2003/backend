@@ -1,3 +1,6 @@
+<head>
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
 <style>
     .form1{
         max-width: 700px;
