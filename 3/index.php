@@ -56,7 +56,7 @@ else{
     $som->bindParam(':person', $id);
     foreach($_POST['power']  as $power){
     $som->bindParam(':power', $power);
-    if($sppe->execute()==false){
+    if($som->execute()==false){
       print_r($som->errorCode());
       print_r($som->errorInfo());
       exit();
