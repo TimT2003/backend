@@ -49,8 +49,8 @@ else{
     $db = new PDO('mysql:host=localhost;dbname=u52819', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
 
     try {
-    $stmt = $db->prepare("INSERT INTO application SET name=?,email=?,year=?,gender=?,limb=?,bio=?");
-    $stmt -> execute(array($_POST['name'],$_POST['email'],$_POST['year'],$_POST['limb'],$_POST['bio']));
+    $stmt = $db->prepare("INSERT INTO tabl SET name=?,email=?,year=?,gender=?,limb=?,bio=?");
+    $stmt -> execute(array($_POST['name'],$_POST['email'],$_POST['year'],$_POST['gender'],$_POST['limb'],$_POST['bio']));
     $id=$db->lastInsertId();
     $som=$db->prepare("INSERT INTO tabl1 SET id_power=:power,id_person=:person");
     $som->bindParam(':person', $id);
