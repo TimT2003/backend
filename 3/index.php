@@ -52,7 +52,7 @@ else{
     $stmt = $db->prepare("INSERT INTO tabl SET name=?,email=?,year=?,gender=?,limb=?,bio=?");
     $stmt -> execute(array($_POST['name'],$_POST['email'],$_POST['year'],$_POST['gender'],$_POST['limb'],$_POST['bio']));
     $id=$db->lastInsertId();
-    $som=$db->prepare("INSERT INTO tabl1 SET id_power=:power,id_person=:person");
+    $som=$db->prepare("INSERT INTO power SET id_power=:power,id_person=:person");
     $som->bindParam(':person', $id);
     foreach($_POST['power']  as $power){
     $som->bindParam(':power', $power);
