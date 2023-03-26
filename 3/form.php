@@ -41,7 +41,7 @@
     </select> <br>
     <label> Биография </label> <br>
     <textarea name="bio" rows="10" cols="15"></textarea> <br>
-    <input name="check" type="checkbox"> Вы согласны с пользовательским соглашением <br>
+    <input name="checkin"  type="checkbox" value="on"> Согласиться <br>
     <input type="submit" value="Отправить"/>
   </form>
   </div>
