@@ -86,14 +86,14 @@ else {
   setcookie('year_error','',100000);
 }
 //проверка пола
-if (!isset($_POST['sex']) or ($_POST['sex']!='M' and $_POST['sex']!='W')) {
-  setcookie('sex_error', '1', time() + 24 * 60 * 60);
-  setcookie('sex_value', '', 100000);
+if (!isset($_POST['gender']) or ($_POST['gender']!='M' and $_POST['gender']!='W')) {
+  setcookie('gender_error', '1', time() + 24 * 60 * 60);
+  setcookie('gender_value', '', 100000);
   $errors = TRUE;
 }
 else {
-  setcookie('sex_value', $_POST['sex'], time() + 12*30 * 24 * 60 * 60);
-  setcookie('sex_error','',100000);
+  setcookie('gender_value', $_POST['gender'], time() + 12*30 * 24 * 60 * 60);
+  setcookie('gender_error','',100000);
 }
 //проверка конечностей
 if (!isset($_POST['limb']) or ($_POST['limb']<1 and $_POST['limb']>4)) {
@@ -108,9 +108,9 @@ else {
 //проверка суперспособностей
 if (!isset($_POST['power'])) {
   setcookie('power_error', '1', time() + 24 * 60 * 60);
-  setcookie('immortal_value', '', 100000);
-  setcookie('teleport_value', '', 100000);
-  setcookie('telepat_value', '', 100000);
+  setcookie('walk_value', '', 100000);
+  setcookie('water_value', '', 100000);
+  setcookie('night_value', '', 100000);
   $errors = TRUE;
 }
 else {
@@ -121,9 +121,9 @@ else {
     "telepat_value"=>0
   );
   foreach($pwrs as $pwr){
-    if($pwr=='Бессмертие'){setcookie('immortal_value', 1, time() + 12*30 * 24 * 60 * 60); $a['immortal_value']=1;} 
-    if($pwr=='Телепорт'){setcookie('teleport_value', 1, time() + 12*30 * 24 * 60 * 60);$a['teleport_value']=1;} 
-    if($pwr=='Телепатия'){setcookie('telepat_value', 1, time() + 12*30 * 24 * 60 * 60);$a['telepat_value']=1;} 
+    if($pwr=='Проход сквозь стены'){setcookie('walk_value', 1, time() + 12*30 * 24 * 60 * 60); $a['walk_value']=1;} 
+    if($pwr=='Дыхание под водой'){setcookie('water_value', 1, time() + 12*30 * 24 * 60 * 60);$a['water_value']=1;} 
+    if($pwr=='Ночное зрение'){setcookie('night_value', 1, time() + 12*30 * 24 * 60 * 60);$a['night_value']=1;} 
   }
   foreach($a as $c=>$val){
     if($val==0){
@@ -152,7 +152,7 @@ else {
   setcookie('name_error', '', 100000);
   setcookie('email_error', '', 100000);
   setcookie('year_error', '', 100000);
-  setcookie('sex_error', '', 100000);
+  setcookie('gender_error', '', 100000);
   setcookie('limb_error', '', 100000);
   setcookie('power_error', '', 100000);
   setcookie('bio_error', '', 100000);
