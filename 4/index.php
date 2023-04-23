@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     'name'=>!empty($_COOKIE['name_error']),
     'email'=>!empty($_COOKIE['email_error']),
     'year'=>!empty($_COOKIE['year_error']),
-    'sex'=>!empty($_COOKIE['gender_error']),
+    'gender'=>!empty($_COOKIE['gender_error']),
     'limb'=>!empty($_COOKIE['limb_error']),
     'power'=>!empty($_COOKIE['power_error']),
     'check'=>!empty($_COOKIE['check_error']),
