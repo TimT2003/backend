@@ -183,7 +183,7 @@ try {
       print_r($som->errorInfo());
       exit();
     }
-}
+
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   exit();
