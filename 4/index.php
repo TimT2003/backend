@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     'name'=>!empty($_COOKIE['name_error']),
     'email'=>!empty($_COOKIE['email_error']),
     'year'=>!empty($_COOKIE['year_error']),
-    'sex'=>!empty($_COOKIE['sex_error']),
+    'sex'=>!empty($_COOKIE['gender_error']),
     'limb'=>!empty($_COOKIE['limb_error']),
     'power'=>!empty($_COOKIE['power_error']),
     'check'=>!empty($_COOKIE['check_error']),
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if ($errors['year']) {
     $messages[] = '<div class="error">Выберите год рождения.</div>';
   }
-  if ($errors['sex']) {
+  if ($errors['gender']) {
     $messages[] = '<div class="error">Выберите пол.</div>';
   }
   if ($errors['limb']) {
@@ -41,11 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['name'] = empty($_COOKIE['name_value']) ? '' : $_COOKIE['name_value'];
   $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
   $values['year'] = empty($_COOKIE['year_value']) ? 0 : $_COOKIE['year_value'];
-  $values['sex'] = empty($_COOKIE['sex_value']) ? '' : $_COOKIE['sex_value'];
+  $values['gender'] = empty($_COOKIE['gender_value']) ? '' : $_COOKIE['gender_value'];
   $values['limb'] = empty($_COOKIE['limb_value']) ? '' : $_COOKIE['limb_value'];
-  $values['immortal'] = empty($_COOKIE['immortal_value']) ? 0 : $_COOKIE['immortal_value'];
-  $values['teleport'] = empty($_COOKIE['teleport_value']) ? 0 : $_COOKIE['teleport_value'];
-  $values['telepat'] = empty($_COOKIE['telepat_value']) ? 0 : $_COOKIE['telepat_value'];
+  $values['walk'] = empty($_COOKIE['walk_value']) ? 0 : $_COOKIE['walk_value'];
+  $values['water'] = empty($_COOKIE['water_value']) ? 0 : $_COOKIE['water_value'];
+  $values['night'] = empty($_COOKIE['night_value']) ? 0 : $_COOKIE['night_value'];
   $values['bio'] = empty($_COOKIE['bio_value']) ? '' : $_COOKIE['bio_value'];
   $values['check'] = empty($_COOKIE['check_value']) ? FALSE : $_COOKIE['check_value'];
 
