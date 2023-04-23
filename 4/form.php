@@ -50,7 +50,7 @@ if (!empty($messages)) {
       <input name="limb" type="radio" value="2" <?php if($values['limb']=="2") {print 'checked';} ?>/> 10 
     </div>
     <label> Выберите суперспособности </label> <br>
-    <select name="tabl2[]" size="3" multiple <?php if ($errors['powers']) {print 'class="error"';} ?>>
+    <select name="power[]" size="3" multiple <?php if ($errors['powers']) {print 'class="error"';} ?>>
       <option value="1" <?php if($values['walk']==1){print 'selected';} ?>>Проход сквозь стены</option>
       <option value="2" <?php if($values['water']==1){print 'selected';} ?>>Дыхание под водой</option>
       <option value="3" <?php if($values['night']==1){print 'selected';} ?>>Ночное зрение</option>
