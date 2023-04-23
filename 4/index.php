@@ -162,13 +162,13 @@ else {
 $name=$_POST['name'];
 $email=$_POST['email'];
 $year=$_POST['year'];
-$sex=$_POST['sex'];
+$gender=$_POST['gender'];
 $limb=$_POST['limb'];
 $bio=$_POST['bio'];
 $powers=$_POST['power'];
-$user = 'u52821';
-$pass = '8567731';
-$db = new PDO('mysql:host=localhost;dbname=u52821', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+$user = 'u52819';
+$pass = '7263482';
+$db = new PDO('mysql:host=localhost;dbname=u52819', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
 
 try {
   $stmt = $db->prepare("INSERT INTO application SET name=?,email=?,year=?,sex=?,limb=?,bio=?");
