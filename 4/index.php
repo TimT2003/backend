@@ -86,7 +86,7 @@ else {
   setcookie('year_error','',100000);
 }
 //проверка пола
-if (!isset($_POST['gender']) or ($_POST['gender']!='M' and $_POST['gender']!='W')) {
+if (!isset($_POST['gender']) or ($_POST['gender']!='1' and $_POST['gender']!='2')) {
   setcookie('gender_error', '1', time() + 24 * 60 * 60);
   setcookie('gender_value', '', 100000);
   $errors = TRUE;
@@ -116,9 +116,9 @@ if (!isset($_POST['power'])) {
 else {
   $pwrs=$_POST['power'];
   $a=array(
-    "immortal_value"=>0,
-    "teleport_value"=>0,
-    "telepat_value"=>0
+    "walk_value"=>0,
+    "water_value"=>0,
+    "night_value"=>0
   );
   foreach($pwrs as $pwr){
     if($pwr=='Проход сквозь стены'){setcookie('walk_value', 1, time() + 12*30 * 24 * 60 * 60); $a['walk_value']=1;} 
@@ -134,7 +134,7 @@ else {
 //запись куки для биографии
 setcookie('bio_value',$_POST['bio'],time()+ 12*30*24*60*60);
 //проверка согласия с политикой конфиденциальности
-if(!isset($_POST['check'])){
+if(!isset($_POST['checkin'])){
   setcookie('check_error','1',time()+ 24*60*60);
   setcookie('check_value', '', 100000);
   $errors=TRUE;
@@ -166,18 +166,23 @@ $gender=$_POST['gender'];
 $limb=$_POST['limb'];
 $bio=$_POST['bio'];
 $powers=$_POST['power'];
+$check=$_POST['checkin'];
 $user = 'u52819';
 $pass = '7263482';
 $db = new PDO('mysql:host=localhost;dbname=u52819', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
 
 try {
-  $stmt = $db->prepare("INSERT INTO application SET name=?,email=?,year=?,sex=?,limb=?,bio=?");
-  $stmt -> execute(array($name,$email,$year,$sex,$limb,$bio));
+  $stmt = $db->prepare("INSERT INTO tabl SET name=?,email=?,year=?,gender=?,limb=?,bio=?,checkin=?");
+  $stmt -> execute(array($name,$email,$year,$gender,$limb,$bio,$check));
   $id=$db->lastInsertId();
-  $pwr=$db->prepare("INSERT INTO supers SET power_name=?,uid=?");
-  foreach($powers as $power){ 
-    $pwr->execute(array($power,$id));  
-  }
+  $pwr=$db->prepare("INSERT INTO power SET id_power=:power,id_person=:person");
+  foreach($_POST['power']  as $power){
+    $som->bindParam(':power', $power);
+    if($som->execute()==false){
+      print_r($som->errorCode());
+      print_r($som->errorInfo());
+      exit();
+    }
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
