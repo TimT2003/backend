@@ -29,7 +29,7 @@ if (!empty($messages)) {
     <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>>
       <option value="Выбрать">Выбрать</option>
     <?php
-        for($i=1800;$i<=2023;$i++){
+        for($i=2000;$i<=2022;$i++){
           if($values['year']==$i){
             printf("<option value=%d selected>%d год</option>",$i,$i);
           }
@@ -40,22 +40,20 @@ if (!empty($messages)) {
     ?>
     </select> <br>
     <label> Ваш пол </label> <br>
-    <div <?php if ($errors['sex']) {print 'class="error"';} ?>>
-      <input name="sex" type="radio" value="1" <?php if($values['sex']=="M") {print 'checked';} ?>/> Мужчина
-      <input name="sex" type="radio" value="2" <?php if($values['sex']=="W") {print 'checked';} ?>/> Женщина
+    <div <?php if ($errors['gender']) {print 'class="error"';} ?>>
+      <input name="gender" type="radio" value="1" <?php if($values['gender']=="M") {print 'checked';} ?>/> Мужчина
+      <input name="gender" type="radio" value="2" <?php if($values['gender']=="W") {print 'checked';} ?>/> Женщина
     </div>
     <label> Сколько у вас конечностей </label> <br>
     <div <?php if ($errors['limb']) {print 'class="error"';} ?>>
       <input name="limb" type="radio" value="1" <?php if($values['limb']=="1") {print 'checked';} ?>/> 1 
-      <input name="limb" type="radio" value="2" <?php if($values['limb']=="2") {print 'checked';} ?>/> 2 
-      <input name="limb" type="radio" value="3" <?php if($values['limb']=="3") {print 'checked';} ?>/> 3 
-      <input name="limb" type="radio" value="4" <?php if($values['limb']=="4") {print 'checked';} ?>/> 4 
+      <input name="limb" type="radio" value="2" <?php if($values['limb']=="2") {print 'checked';} ?>/> 10 
     </div>
     <label> Выберите суперспособности </label> <br>
     <select name="form1[]" size="3" multiple <?php if ($errors['powers']) {print 'class="error"';} ?>>
-      <option value="1" <?php if($values['teleport']==1){print 'selected';} ?>>Телепортация</option>
-      <option value="2" <?php if($values['immortal']==1){print 'selected';} ?>>Бессмертие</option>
-      <option value="3" <?php if($values['telepat']==1){print 'selected';} ?>>Телепатия</option>
+      <option value="1" <?php if($values['walk']==1){print 'selected';} ?>>Проход сквозь стены</option>
+      <option value="2" <?php if($values['water']==1){print 'selected';} ?>>Дыхание под водой</option>
+      <option value="3" <?php if($values['night']==1){print 'selected';} ?>>Ночное зрение</option>
     </select> <br>
     <label> Краткая биография </label> <br>
     <textarea name="bio" rows="10" cols="15"><?php print $values['bio']; ?></textarea> <br>
