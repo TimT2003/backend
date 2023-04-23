@@ -177,10 +177,10 @@ try {
   $id=$db->lastInsertId();
   $pwr=$db->prepare("INSERT INTO power SET id_power=:power,id_person=:person");
   foreach($_POST['power']  as $power){
-    $som->bindParam(':power', $power);
-    if($som->execute()==false){
-      print_r($som->errorCode());
-      print_r($som->errorInfo());
+    $pwr->bindParam(':power', $power);
+    if($pwr->execute()==false){
+      print_r($pwr->errorCode());
+      print_r($pwr->errorInfo());
       exit();
     }
   }
