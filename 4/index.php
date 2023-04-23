@@ -176,6 +176,7 @@ try {
   $stmt -> execute(array($name,$email,$year,$gender,$limb,$bio,$check));
   $id=$db->lastInsertId();
   $pwr=$db->prepare("INSERT INTO power SET id_power=:power,id_person=:person");
+  $pwr->bindParam(':person', $id);
   foreach($_POST['power']  as $power){
     $pwr->bindParam(':power', $power);
     if($pwr->execute()==false){
