@@ -251,11 +251,11 @@ else {
     $db = new PDO('mysql:host=localhost;dbname=u52819', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
     if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login']) and !$errors) {
     $id=$_SESSION['uid'];
-    $upd=$db->prepare("update form set name=?,email=?,year=?,gender=?,limb=?,bio=? where id=?");
+    $upd=$db->prepare("update tabl set name=?,email=?,year=?,gender=?,limb=?,bio=? where id=?");
     $upd->execute(array($name,$email,$year,$sex,$limb,$bio,$id));
-    $del=$db->prepare("delete from power where person_id=?");
+    $del=$db->prepare("delete from power where id_person=?");
     $del->execute(array($id));
-    $upd1=$db->prepare("insert into power set power_id=?,person_id=?");
+    $upd1=$db->prepare("insert into power set id_power=?,id_person=?");
     foreach($pwrs as $pwr){
       $upd1->execute(array($pwr,$id));
     }
@@ -272,7 +272,7 @@ else {
         $stmt = $db->prepare("INSERT INTO tabl SET name=?,email=?,year=?,gender=?,limb=?,bio=?,checkin=?");
         $stmt -> execute(array($name,$email,$year,$sex,$limb,$bio,$check));
         $id=$db->lastInsertId();
-        $pwr=$db->prepare("INSERT INTO power SET power_id=?,person_id=?");
+        $pwr=$db->prepare("INSERT INTO power SET id_power=?,id_person=?");
         foreach($pwrs as $power){ 
           $pwr->execute(array($power,$id));
         }
