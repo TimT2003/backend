@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie('1_value', '', 100000);
     setcookie('2_value', '', 100000);
     setcookie('3_value', '', 100000);
-    setcookie('check_value', '', 100000);
+    setcookie('checkin_value', '', 100000);
   }
 
   $errors = array();
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['gender'] = !empty($_COOKIE['gender_error']);
   $errors['limb'] = !empty($_COOKIE['limb_error']);
   $errors['power'] = !empty($_COOKIE['power_error']);
-  $errors['check'] = !empty($_COOKIE['check_error']);
+  $errors['checkin'] = !empty($_COOKIE['checkin_error']);
   if ($errors['name']) {
     setcookie('name_error', '', 100000);
     $messages[] = '<div class="error">Заполните имя.</div>';
@@ -66,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<div class="error">Выберите хотя бы одну суперспособность.</div>';
     $error=TRUE;
   }
-  if ($errors['check']) {
-    setcookie('check_error', '', 100000);
+  if ($errors['checkin']) {
+    setcookie('checkin_error', '', 100000);
     $messages[] = '<div class="error">Необходимо согласиться с политикой конфиденциальности.</div>';
     $error=TRUE;
   }
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['2'] = empty($_COOKIE['2_value']) ? 0 : $_COOKIE['2_value'];
   $values['3'] = empty($_COOKIE['3_value']) ? 0 : $_COOKIE['3_value'];
   $values['bio'] = empty($_COOKIE['bio_value']) ? '' : strip_tags($_COOKIE['bio_value']);
-  $values['check'] = empty($_COOKIE['check_value']) ? FALSE : $_COOKIE['check_value'];
+  $values['checkin'] = empty($_COOKIE['checkin_value']) ? FALSE : $_COOKIE['checkin_value'];
   if (!$error and !empty($_COOKIE[session_name()]) and !empty($_SESSION['login'])) {
     $user = 'u52819';
     $pass = '7263482';
@@ -223,13 +223,13 @@ else {
     //проверка согласия с политикой конфиденциальности
     if(empty($_SESSION['login'])){
       if(!isset($check)){
-        setcookie('check_error','1',time()+ 24*60*60);
-        setcookie('check_value', '', 100000);
+        setcookie('checkin_error','1',time()+ 24*60*60);
+        setcookie('checkin_value', '', 100000);
         $errors=TRUE;
       }
       else{
-        setcookie('check_value',TRUE,time()+ 60*60);
-        setcookie('check_error','',100000);
+        setcookie('checkin_value',TRUE,time()+ 60*60);
+        setcookie('checkin_error','',100000);
       }
     }
     if ($errors) {
@@ -243,7 +243,7 @@ else {
       setcookie('gender_error', '', 100000);
       setcookie('limb_error', '', 100000);
       setcookie('power_error', '', 100000);
-      setcookie('check_error', '', 100000);
+      setcookie('checkin_error', '', 100000);
     }
     
     $user = 'u52819';
