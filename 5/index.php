@@ -18,13 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie('name_value', '', 100000);
     setcookie('mail_value', '', 100000);
     setcookie('year_value', '', 100000);
-    setcookie('sex_value', '', 100000);
+    setcookie('gender_value', '', 100000);
     setcookie('limb_value', '', 100000);
     setcookie('bio_value', '', 100000);
     setcookie('1_value', '', 100000);
     setcookie('2_value', '', 100000);
     setcookie('3_value', '', 100000);
-    setcookie('checked_value', '', 100000);
+    setcookie('check_value', '', 100000);
   }
 
   $errors = array();
@@ -32,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['name'] = !empty($_COOKIE['name_error']);
   $errors['email'] = !empty($_COOKIE['email_error']);
   $errors['year'] = !empty($_COOKIE['year_error']);
-  $errors['sex'] = !empty($_COOKIE['sex_error']);
+  $errors['gender'] = !empty($_COOKIE['gender_error']);
   $errors['limb'] = !empty($_COOKIE['limb_error']);
-  $errors['form1'] = !empty($_COOKIE['form1_error']);
-  $errors['checked'] = !empty($_COOKIE['checked_error']);
+  $errors['power'] = !empty($_COOKIE['power_error']);
+  $errors['check'] = !empty($_COOKIE['check_error']);
   if ($errors['name']) {
     setcookie('name_error', '', 100000);
     $messages[] = '<div class="error">Заполните имя.</div>';
@@ -51,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<div class="error">Выберите год рождения.</div>';
     $error=TRUE;
   }
-  if ($errors['sex']) {
-    setcookie('sex_error', '', 100000);
+  if ($errors['gender']) {
+    setcookie('gender_error', '', 100000);
     $messages[] = '<div class="error">Выберите пол.</div>';
     $error=TRUE;
   }
@@ -61,13 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<div class="error">Выберите сколько у вас конечностей.</div>';
     $error=TRUE;
   }
-  if ($errors['form1']) {
-    setcookie('form1_error', '', 100000);
+  if ($errors['power']) {
+    setcookie('power_error', '', 100000);
     $messages[] = '<div class="error">Выберите хотя бы одну суперспособность.</div>';
     $error=TRUE;
   }
-  if ($errors['checked']) {
-    setcookie('checked_error', '', 100000);
+  if ($errors['check']) {
+    setcookie('check_error', '', 100000);
     $messages[] = '<div class="error">Необходимо согласиться с политикой конфиденциальности.</div>';
     $error=TRUE;
   }
@@ -75,17 +75,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['name'] = empty($_COOKIE['name_value']) ? '' : strip_tags($_COOKIE['name_value']);
   $values['email'] = empty($_COOKIE['email_value']) ? '' : strip_tags($_COOKIE['email_value']);
   $values['year'] = empty($_COOKIE['year_value']) ? 0 : $_COOKIE['year_value'];
-  $values['sex'] = empty($_COOKIE['sex_value']) ? '' : $_COOKIE['sex_value'];
+  $values['gender'] = empty($_COOKIE['gender_value']) ? '' : $_COOKIE['gender_value'];
   $values['limb'] = empty($_COOKIE['limb_value']) ? '' : $_COOKIE['limb_value'];
   $values['1'] = empty($_COOKIE['1_value']) ? 0 : $_COOKIE['1_value'];
   $values['2'] = empty($_COOKIE['2_value']) ? 0 : $_COOKIE['2_value'];
   $values['3'] = empty($_COOKIE['3_value']) ? 0 : $_COOKIE['3_value'];
   $values['bio'] = empty($_COOKIE['bio_value']) ? '' : strip_tags($_COOKIE['bio_value']);
-  $values['checked'] = empty($_COOKIE['checked_value']) ? FALSE : $_COOKIE['checked_value'];
+  $values['check'] = empty($_COOKIE['check_value']) ? FALSE : $_COOKIE['check_value'];
   if (!$error and !empty($_COOKIE[session_name()]) and !empty($_SESSION['login'])) {
-    $user = 'u52821';
-    $pass = '8567731';
-    $db = new PDO('mysql:host=localhost;dbname=u52821', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+    $user = 'u52819';
+    $pass = '7263482';
+    $db = new PDO('mysql:host=localhost;dbname=u52819', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
     try{
       $get=$db->prepare("select * from form where id=?");
       $get->bindParam(1,$_SESSION['uid']);
@@ -94,12 +94,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $values['name']=$inf[0]['name'];
       $values['email']=$inf[0]['email'];
       $values['year']=$inf[0]['year'];
-      $values['sex']=$inf[0]['sex'];
+      $values['gender']=$inf[0]['gender'];
       $values['limb']=$inf[0]['limb'];
       $values['bio']=$inf[0]['bio'];
-      $values['checked']=$inf[0]['checked'];
+      $values['check']=$inf[0]['check'];
 
-      $get2=$db->prepare("select power_id from form1 where person_id=?");
+      $get2=$db->prepare("select power_id from power where person_id=?");
       $get2->bindParam(1,$_SESSION['uid']);
       $get2->execute();
       $inf2=$get2->fetchALL();
@@ -134,12 +134,12 @@ else {
     $name=$_POST['name'];
     $email=$_POST['email'];
     $year=$_POST['year'];
-    $sex=$_POST['sex'];
+    $sex=$_POST['gender'];
     $limb=$_POST['limb'];
-    $pwrs=$_POST['form1'];
+    $pwrs=$_POST['power'];
     $bio=$_POST['bio'];
     if(empty($_SESSION['login'])){
-      $check=$_POST['checked'];
+      $check=$_POST['checkin'];
     }
     $errors = FALSE;
     if (empty($name) or !preg_match($regex_name,$name)) {
@@ -173,13 +173,13 @@ else {
     }
     //проверка пола
     if (!isset($sex)  or ($sex!='1' and $sex!='2')) {
-      setcookie('sex_error', '1', time() + 24 * 60 * 60);
-      setcookie('sex_value', '', 100000);
+      setcookie('gender_error', '1', time() + 24 * 60 * 60);
+      setcookie('gender_value', '', 100000);
       $errors = TRUE;
     }
     else {
-      setcookie('sex_value', $sex, time() + 60 * 60);
-      setcookie('sex_error','',100000);
+      setcookie('gender_value', $sex, time() + 60 * 60);
+      setcookie('gender_error','',100000);
     }
     //проверка конечностей
     if (!isset($limb)) {
@@ -193,7 +193,7 @@ else {
     }
     //проверка суперспособностей
     if (!isset($pwrs)) {
-      setcookie('form1_error', '1', time() + 24 * 60 * 60);
+      setcookie('power_error', '1', time() + 24 * 60 * 60);
       setcookie('1_value', '', 100000);
       setcookie('2_value', '', 100000);
       setcookie('3_value', '', 100000);
@@ -223,13 +223,13 @@ else {
     //проверка согласия с политикой конфиденциальности
     if(empty($_SESSION['login'])){
       if(!isset($check)){
-        setcookie('checked_error','1',time()+ 24*60*60);
-        setcookie('checked_value', '', 100000);
+        setcookie('check_error','1',time()+ 24*60*60);
+        setcookie('check_value', '', 100000);
         $errors=TRUE;
       }
       else{
-        setcookie('checked_value',TRUE,time()+ 60*60);
-        setcookie('checked_error','',100000);
+        setcookie('check_value',TRUE,time()+ 60*60);
+        setcookie('check_error','',100000);
       }
     }
     if ($errors) {
@@ -240,22 +240,22 @@ else {
       setcookie('name_error', '', 100000);
       setcookie('email_error', '', 100000);
       setcookie('year_error', '', 100000);
-      setcookie('sex_error', '', 100000);
+      setcookie('gender_error', '', 100000);
       setcookie('limb_error', '', 100000);
-      setcookie('form1_error', '', 100000);
-      setcookie('checked_error', '', 100000);
+      setcookie('power_error', '', 100000);
+      setcookie('check_error', '', 100000);
     }
     
-    $user = 'u52821';
-    $pass = '8567731';
-    $db = new PDO('mysql:host=localhost;dbname=u52821', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+    $user = 'u52819';
+    $pass = '7263482';
+    $db = new PDO('mysql:host=localhost;dbname=u52819', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
     if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login']) and !$errors) {
     $id=$_SESSION['uid'];
-    $upd=$db->prepare("update form set name=?,email=?,year=?,sex=?,limb=?,bio=? where id=?");
+    $upd=$db->prepare("update form set name=?,email=?,year=?,gender=?,limb=?,bio=? where id=?");
     $upd->execute(array($name,$email,$year,$sex,$limb,$bio,$id));
-    $del=$db->prepare("delete from form1 where person_id=?");
+    $del=$db->prepare("delete from power where person_id=?");
     $del->execute(array($id));
-    $upd1=$db->prepare("insert into form1 set power_id=?,person_id=?");
+    $upd1=$db->prepare("insert into power set power_id=?,person_id=?");
     foreach($pwrs as $pwr){
       $upd1->execute(array($pwr,$id));
     }
@@ -269,10 +269,10 @@ else {
       setcookie('login', $login);
       setcookie('password', $password);
       try {
-        $stmt = $db->prepare("INSERT INTO form SET name=?,email=?,year=?,sex=?,limb=?,bio=?,checked=?");
+        $stmt = $db->prepare("INSERT INTO tabl SET name=?,email=?,year=?,gender=?,limb=?,bio=?,checkin=?");
         $stmt -> execute(array($name,$email,$year,$sex,$limb,$bio,$check));
         $id=$db->lastInsertId();
-        $pwr=$db->prepare("INSERT INTO form1 SET power_id=?,person_id=?");
+        $pwr=$db->prepare("INSERT INTO power SET power_id=?,person_id=?");
         foreach($pwrs as $power){ 
           $pwr->execute(array($power,$id));
         }
