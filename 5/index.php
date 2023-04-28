@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $pass = '7263482';
     $db = new PDO('mysql:host=localhost;dbname=u52819', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
     try{
-      $get=$db->prepare("select * from form where id=?");
+      $get=$db->prepare("select * from tabl where id=?");
       $get->bindParam(1,$_SESSION['uid']);
       $get->execute();
       $inf=$get->fetchALL();
