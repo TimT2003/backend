@@ -53,10 +53,10 @@ if (!empty($messages)) {
     <?php 
     $cl_e='';
     $ch='';
-    if($values['check'] or !empty($_SESSION['login'])){
+    if($values['checkin'] or !empty($_SESSION['login'])){
       $ch='checkin';
     }
-    if ($errors['check']) {
+    if ($errors['checkin']) {
       $cl_e='class="error"';
     }
     if(empty($_SESSION['login'])){
