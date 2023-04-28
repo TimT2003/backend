@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </style>
 <div class="form-sign-in">
 <form action="login.php" method="post">
+  <br><br><br><br><br>
   <label> Логин <label> <br>
   <input name="login" /> <br> 
   <label> Пароль <label> <br>
