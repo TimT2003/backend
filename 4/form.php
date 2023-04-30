@@ -1,13 +1,6 @@
-<style>
-  .form1{
-    max-width: 960px;
-    text-align: center;
-    margin: 0 auto;
-  }
-  .error {
-    border: 2px solid red;
-  }
-</style>
+<head>
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
 <body>
 <?php
 if (!empty($messages)) {
