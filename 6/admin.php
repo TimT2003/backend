@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
   if (empty($_SERVER['PHP_AUTH_USER']) ||
       empty($_SERVER['PHP_AUTH_PW']) ||
       $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-      md5($_SERVER['PHP_AUTH_PW']) != md5(123)) {
+      md5($_SERVER['PHP_AUTH_PW']) != md5(admin)) {
     header('HTTP/1.1 401 Unanthorized');
     header('WWW-Authenticate: Basic realm="My site"');
     print('<h1>401 Требуется авторизация</h1>');
@@ -32,13 +32,13 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
   $form1_array=array('1','2','3');
   $pwrs_count=array();
   try{
-    $app=$db->prepare("select * from form");
+    $app=$db->prepare("select * tabl");
     $app->execute();
     $users=$app->fetchALL();
-    $form1=$db->prepare("select power_id,person_id from form1");
+    $form1=$db->prepare("select id_power,id_person from power");
     $form1->execute();
     $pwrs=$form1->fetchALL();
-    $count=$db->prepare("select count(*) from form1 where power_id=?");
+    $count=$db->prepare("select count(*) from power where id_power=?");
     foreach($form1_array as $pwr){
       $count->execute(array($pwr));
       $pwrs_count[]=$count->fetchAll()[0][0];
