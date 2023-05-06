@@ -8,13 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie('name_value', '', 100000);
     setcookie('mail_value', '', 100000);
     setcookie('year_value', '', 100000);
-    setcookie('sex_value', '', 100000);
+    setcookie('gender_value', '', 100000);
     setcookie('limb_value', '', 100000);
     setcookie('bio_value', '', 100000);
     setcookie('1_value', '', 100000);
     setcookie('2_value', '', 100000);
     setcookie('3_value', '', 100000);
-    setcookie('checked_value', '', 100000);
+    setcookie('checkin_value', '', 100000);
   }
   //Ошибки
   
@@ -23,10 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['name'] = !empty($_COOKIE['name_error']);
   $errors['email'] = !empty($_COOKIE['email_error']);
   $errors['year'] = !empty($_COOKIE['year_error']);
-  $errors['sex'] = !empty($_COOKIE['sex_error']);
+  $errors['gender'] = !empty($_COOKIE['gender_error']);
   $errors['limb'] = !empty($_COOKIE['limb_error']);
-  $errors['form1'] = !empty($_COOKIE['form1_error']);
-  $errors['checked'] = !empty($_COOKIE['checked_error']);
+  $errors['power'] = !empty($_COOKIE['power_error']);
+  $errors['checkin'] = !empty($_COOKIE['checkin_error']);
   if ($errors['name']) {
     setcookie('name_error', '', 100000);
     $messages[] = '<div class="error">Заполните имя.</div>';
@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<div class="error">Выберите год рождения.</div>';
     $error=TRUE;
   }
-  if ($errors['sex']) {
-    setcookie('sex_error', '', 100000);
+  if ($errors['gender']) {
+    setcookie('gender_error', '', 100000);
     $messages[] = '<div class="error">Выберите пол.</div>';
     $error=TRUE;
   }
@@ -52,13 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages[] = '<div class="error">Выберите сколько у вас конечностей.</div>';
     $error=TRUE;
   }
-  if ($errors['form1']) {
-    setcookie('form1_error', '', 100000);
+  if ($errors['power']) {
+    setcookie('power_error', '', 100000);
     $messages[] = '<div class="error">Выберите хотя бы одну суперспособность.</div>';
     $error=TRUE;
   }
-  if ($errors['checked']) {
-    setcookie('checked_error', '', 100000);
+  if ($errors['checkin']) {
+    setcookie('checkin_error', '', 100000);
     $messages[] = '<div class="error">Необходимо согласиться с политикой конфиденциальности.</div>';
     $error=TRUE;
   }
@@ -75,20 +75,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $values['name']=$user[0]['name'];
       $values['email']=$user[0]['email'];
       $values['year']=$user[0]['year'];
-      $values['sex']=$user[0]['sex'];
+      $values['gender']=$user[0]['gender'];
       $values['limb']=$user[0]['limb'];
       $values['bio']=$user[0]['bio'];
-      $get2=$db->prepare("select power_id from form1 where person_id=?");
+      $get2=$db->prepare("select id_power from power where id_person=?");
       $get2->execute(array($id));
       $pwrs=$get2->fetchALL();
       for($i=0;$i<count($pwrs);$i++){
-        if($pwrs[$i]['power_id']=='1'){
+        if($pwrs[$i]['id_power']=='1'){
           $values['1']=1;
         }
-        if($pwrs[$i]['power_id']=='2'){
+        if($pwrs[$i]['id_power']=='2'){
           $values['2']=1;
         }
-        if($pwrs[$i]['power_id']=='3'){
+        if($pwrs[$i]['id_power']=='3'){
           $values['3']=1;
         }
       }
@@ -107,12 +107,12 @@ else {
     $name=$_POST['name'];
     $email=$_POST['email'];
     $year=$_POST['year'];
-    $sex=$_POST['sex'];
+    $sex=$_POST['gender'];
     $limb=$_POST['limb'];
-    $pwrs=$_POST['form1'];
+    $pwrs=$_POST['power'];
     $bio=$_POST['bio'];
     if(empty($_SESSION['login'])){
-      $check=$_POST['checked'];
+      $check=$_POST['checkin'];
     }
     $errors = FALSE;
     if (empty($name) or !preg_match($regex_name,$name)) {
@@ -146,13 +146,13 @@ else {
     }
     //проверка пола
     if (!isset($sex)  or ($sex!='1' and $sex!='2')) {
-      setcookie('sex_error', '1', time() + 24 * 60 * 60);
-      setcookie('sex_value', '', 100000);
+      setcookie('gender_error', '1', time() + 24 * 60 * 60);
+      setcookie('gender_value', '', 100000);
       $errors = TRUE;
     }
     else {
-      setcookie('sex_value', $sex, time() + 60 * 60);
-      setcookie('sex_error','',100000);
+      setcookie('gender_value', $sex, time() + 60 * 60);
+      setcookie('gender_error','',100000);
     }
     //проверка конечностей
     if (!isset($limb)) {
@@ -166,7 +166,7 @@ else {
     }
     //проверка суперспособностей
     if (!isset($pwrs)) {
-      setcookie('form1_error', '1', time() + 24 * 60 * 60);
+      setcookie('power_error', '1', time() + 24 * 60 * 60);
       setcookie('1_value', '', 100000);
       setcookie('2_value', '', 100000);
       setcookie('3_value', '', 100000);
@@ -201,7 +201,7 @@ else {
       setcookie('name_error', '', 100000);
       setcookie('email_error', '', 100000);
       setcookie('year_error', '', 100000);
-      setcookie('sex_error', '', 100000);
+      setcookie('gender_error', '', 100000);
       setcookie('limb_error', '', 100000);
       setcookie('form1_error', '', 100000);
     }
