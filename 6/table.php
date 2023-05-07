@@ -38,14 +38,14 @@
                     "3"=>FALSE
                 );
                 foreach($pwrs as $pwr){
-                    if($pwr['person_id']==$user['id']){
-                        if($pwr['power_id']=='1'){
+                    if($pwr['id_person']==$user['id']){
+                        if($pwr['id_power']=='1'){
                             $user_pwrs['1']=TRUE;
                         }
-                        if($pwr['power_id']=='2'){
+                        if($pwr['id_power']=='2'){
                             $user_pwrs['2']=TRUE;
                         }
-                        if($pwr['power_id']=='3'){
+                        if($pwr['id_power']=='3'){
                             $user_pwrs['3']=TRUE;
                         }
                     }
