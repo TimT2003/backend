@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   include('connect.php');
   try{
       $id=$_GET['edit_id'];
-      $get=$db->prepare("select * from form where id=?");
+      $get=$db->prepare("select * from tabl where id=?");
       $get->execute(array($id));
       $user=$get->fetchALL();
       $values['name']=$user[0]['name'];
@@ -203,15 +203,15 @@ else {
       setcookie('year_error', '', 100000);
       setcookie('gender_error', '', 100000);
       setcookie('limb_error', '', 100000);
-      setcookie('form1_error', '', 100000);
+      setcookie('power_error', '', 100000);
     }
     include('connect.php');
     if(!$errors){
-        $upd=$db->prepare("update form set name=?,email=?,year=?,sex=?,limb=?,bio=? where id=?");
+        $upd=$db->prepare("update tabl set name=?,email=?,year=?,gender=?,limb=?,bio=? where id=?");
         $upd->execute(array($name,$email,$year,$sex,$limb,$bio,$id));
-        $del=$db->prepare("delete from form1 where person_id=?");
+        $del=$db->prepare("delete from power where id_person=?");
         $del->execute(array($id));
-        $upd=$db->prepare("insert into form1 set power_id=?,person_id=?");
+        $upd=$db->prepare("insert into power set id_power=?,id_person=?");
         foreach($pwrs as $pwr){
           $upd->execute(array($pwr,$id));
         }
@@ -226,9 +226,9 @@ else {
     $id=$_POST['id'];
     include('connect.php');
     try {
-      $del=$db->prepare("delete from form1 where person_id=?");
+      $del=$db->prepare("delete from power where id_peson=?");
       $del->execute(array($id));
-      $stmt = $db->prepare("delete from form where id=?");
+      $stmt = $db->prepare("delete from tabl where id=?");
       $stmt -> execute(array($id));
     }
     catch(PDOException $e){
