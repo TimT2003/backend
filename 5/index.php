@@ -99,18 +99,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $values['bio']=$inf[0]['bio'];
       $values['checkin']=$inf[0]['checkin'];
 
-      $get2=$db->prepare("select power_id from power where person_id=?");
+      $get2=$db->prepare("select id_power from power where id_person=?");
       $get2->bindParam(1,$_SESSION['uid']);
       $get2->execute();
       $inf2=$get2->fetchALL();
       for($i=0;$i<count($inf2);$i++){
-        if($inf2[$i]['power_id']=='1'){
+        if($inf2[$i]['id_power']=='1'){
           $values['1']=1;
         }
-        if($inf2[$i]['power_id']=='2'){
+        if($inf2[$i]['id_power']=='2'){
           $values['2']=1;
         }
-        if($inf2[$i]['power_id']=='3'){
+        if($inf2[$i]['id_power']=='3'){
           $values['3']=1;
         }
       }
