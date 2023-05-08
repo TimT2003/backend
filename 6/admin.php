@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
   $form1_array=array('1','2','3');
   $pwrs_count=array();
   try{
-    $app=$db->prepare("select * tabl");
+    $app=$db->prepare("select * from tabl");
     $app->execute();
     $users=$app->fetchALL();
     $form1=$db->prepare("select id_power,id_person from power");
