@@ -3,7 +3,7 @@
   <style>
     .error {
       margin: 0 auto 2px auto;
-      width: 200px;
+      width: 199px;
       border: 2px solid red;
     }
   </style>
