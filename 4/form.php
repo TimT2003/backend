@@ -5,6 +5,7 @@
       margin: 0 auto 2px auto;
       width: 199px;
       border: 2px solid red;
+      
     }
   </style>
 </head>
@@ -23,7 +24,7 @@ if (!empty($messages)) {
   <form action="index.php" method="POST">
     <label> ФИО </label> <br>
     <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> name_value="<?php print $values['name']; ?>" /> <br>
-    <label> Почта </label> <br>
+    <label> Почта </label> <br> <br><br>
     <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?>email_value="<?php print $values['email']; ?>" /> <br>
     <label>
       <?php
