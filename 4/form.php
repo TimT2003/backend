@@ -18,20 +18,13 @@ if (!empty($messages)) {
     <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?>  /> <br>
     <label> Почта </label> <br>
     <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?> /> <br>
-    <label> Год рождения </label> <br>
-    <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>>
-      <option value="Выбрать">Выбрать</option>
-    <?php
-        for($i=2000;$i<=2022;$i++){
-          if($values['year']==$i){
-            printf("<option value=%d selected>%d год</option>",$i,$i);
-          }
-          else{
-            printf("<option value=%d>%d год</option>",$i,$i);
-          }
-        }
-    ?>
-    </select> <br>
+    <label>
+      <?php
+        printf('Год рождения:');
+      ?>
+      <br>
+      <input name="year" placeholder="year" <?php if ($errors['year']) {print 'class="error"';} ?> year_value="<?php print $values['year']; ?>">
+      </label> <br>
     <label> Ваш пол </label> <br>
     <div <?php if ($errors['gender']) {print 'class="error"';} ?>>
       <input name="gender" type="radio" value="1"  /> Мужчина
