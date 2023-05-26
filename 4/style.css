@@ -1,10 +1,15 @@
-* {margin:0;padding: 0}
- .form1{
-   max-width: 700px;
-   text-align: center;
-   margin: 0 auto;
-   background-color:green;
-    }
-body{
- background-color:blue;
+
+* {margin: 0; padding: 0;}
+
+body {
+    font-family: roboto, sans-serif;
+    background-color: yellow;
+    text-align: center;
+}
+
+.fr1 {
+    max-width: 960px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top:50px;
 }
