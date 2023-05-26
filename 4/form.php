@@ -24,7 +24,7 @@ if (!empty($messages)) {
   <form action="index.php" method="POST">
     <label> ФИО </label> <br>
     <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> name_value="<?php print $values['name']; ?>" /> <br>
-    <label> Почта </label> <br> <br><br>
+    <label> Почта </label> <br> 
     <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?>email_value="<?php print $values['email']; ?>" /> <br>
     <label>
       <?php
