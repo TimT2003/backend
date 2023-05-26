@@ -1,27 +1,6 @@
 <head>
-  <link rel="stylesheet" href="style1.css" type="text/css">
-  <style>
-    .error {
-      margin: 0 auto 2px auto;
-      width: 199px;
-      border: 2px solid red;
-      * {margin: 0; padding: 0;}
-
-body {
-    font-family: roboto, sans-serif;
-    background-color: yellow;
-    text-align: center;
-}
-
-.fr1 {
-    max-width: 960px;
-    text-align: center;
-    margin: 0 auto;
-    padding-top:50px;
-}
-      
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  
 </head>
 <body>
 <?php
