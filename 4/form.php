@@ -34,7 +34,7 @@ if (!empty($messages)) {
       </label>
     </select> <br>
     <label> Ваш пол </label> <br>
-    <div <?php if ($errors['gender']) {print 'class="error"';} ?>sex_value="<?php print $value['gender']; ?>">
+    <div <?php if ($errors['gender']) {print 'class="error"';} ?>gender_value="<?php print $value['gender']; ?>">
       <input name="gender" type="radio" value="1" /> Мужчина
       <input name="gender" type="radio" value="2" /> Женщина
     </div>
@@ -44,14 +44,14 @@ if (!empty($messages)) {
       <input name="limb" type="radio" value="2" /> 10
     </div>
     <label> Выберите суперспособности </label> <br>
-    <select name="power[]" size="3" multiple <?php if ($errors['power']) {print 'class="error"';} ?>form1_value="<?php print $values['power']; ?>">
+    <select name="power[]" size="3" multiple <?php if ($errors['power']) {print 'class="error"';} ?>power_value="<?php print $values['power']; ?>">
       <option value="1">Проход сквозь стены</option>
       <option value="2">Дыхание под водой</option>
       <option value="3">Ночное зрение</option>
     </select> <br>
     <label> Краткая биография </label> <br>
     <textarea <?php if ($errors['bio']) {print 'class="error"';} ?> bio_value="<?php print $values['bio']; ?>" name="bio" rows="10" cols="15"></textarea> <br>
-    <div  <?php if ($errors['checkin']) {print 'class="error"';} ?> checked_value="<?php print $values['checkin']; ?>">
+    <div  <?php if ($errors['checkin']) {print 'class="error"';} ?> checkin_value="<?php print $values['checkin']; ?>">
     <input name="checkin" type="checkbox"> Вы согласны с пользовательским соглашением <br>
     </div>
     <input type="submit" value="Отправить"/>
