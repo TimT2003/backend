@@ -13,7 +13,7 @@ if (!empty($messages)) {
   print('</div>');
 }
 ?>
-  <div class="fr1">
+  <div class="power1">
   <form action="index.php" method="POST">
     <label> ФИО </label> <br>
     <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> name_value="<?php print $values['name']; ?>" /> <br>
