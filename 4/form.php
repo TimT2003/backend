@@ -1,6 +1,12 @@
 <head>
   <link rel="stylesheet" href="style1.css" type="text/css">
-  
+  <style>
+    .error {
+      margin: 0 auto 2px auto;
+      width: 200px;
+      border: 2px solid red;
+    }
+  </style>
 </head>
 <body>
 <?php
